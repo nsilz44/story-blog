@@ -1,4 +1,8 @@
+# Database connection
+db.js
+
 # Logs
+
 logs
 *.log
 npm-debug.log*
