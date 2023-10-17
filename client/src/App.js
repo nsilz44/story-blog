@@ -1,31 +1,33 @@
-
-import logo from "./logo.svg"; 
 import "./App.css"; 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Blogs from "./pages/Blogs";
+import Contact from "./pages/Contact";
+import NoPage from "./pages/NoPage";
+import SuperUser from "./pages/SuperUser";
+import SignIn from "./pages/SignIn";
+
   
 function App() { 
-  return ( 
-    <div className="App"> 
-      <header className="App-header"> 
-        <img src={logo} className="App-logo" 
-             alt="logo" /> 
-          
-<p>A simple React app.....</p> 
-  
-        <a 
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        > 
-          Learn React 
-        </a> 
-        <form action="../../post" method="post" 
-              className="form"> 
-          <button type="submit">Connected?</button> 
-        </form> 
-      </header> 
-    </div> 
-  ); 
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="superUser" element={<SuperUser />} />
+          <Route path="signIn" element={<SignIn />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 } 
   
 export default App; 
+
+ 
+
+
