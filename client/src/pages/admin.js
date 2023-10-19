@@ -1,6 +1,6 @@
-const admin = () => {
+const Admin = () => {
     return <h1>admin</h1>;
   };
   
-  export default admin;
+  export default Admin;
   

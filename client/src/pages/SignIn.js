@@ -1,59 +1,53 @@
 import React ,{ useState } from "react";
 
-
-
-
 const SignIn = () => {
-   const [usernameReg, setUsernameReg] = useState("");
-   const [passwordReg, setPasswordReg] = useState ("");
+   const [usernameSign, setUsernameSign] = useState("");
+   const [passwordSign, setPasswordSign] = useState ("");
 
-   const registerUser = () =>{ 
+   const signInUser = () =>{ 
       try {
        const data = {
-          username : usernameReg,
-          password : passwordReg
+          username : usernameSign,
+          password : passwordSign
        }
        console.log(data)
-       const res = fetch('http://localhost:8080/register', {
+       const res = fetch('http://localhost:8080/signin', {
          method: 'POST',
          headers: {
            "content-type": "application/json"
          },
          body: JSON.stringify(data),
        });
-       console.log(res);
-    
-       if (!res.ok) console.log(`POST failed with ${res.status}.`);
+       if  (res.ok) {
+         console.log(res)
+       }
+       if (!res.ok) {
+         console.log(`POST failed with ${res.status}.`)
+         console.log(res);};
      } catch(err) {
        console.error(err);
-     }
+     };
    };
 
-   function RegUsernameChange(e) {
-      setUsernameReg(e.target.value);
+   function SignUsernameChange(e) {
+      setUsernameSign(e.target.value);
     };
 
-    function RegPasswordChange(e) {
-      setPasswordReg(e.target.value);
+    function SignPasswordChange(e) {
+      setPasswordSign(e.target.value);
     };
-   
+
+
     return (
-        <div className="App">
-           <div className="registration">
-              <h1>Registration</h1>
-              <label>Username</label>
-              <input type="text" value={usernameReg} onChange={RegUsernameChange}   /><br/>
-              <label>password</label>
-              <input type="text" value={passwordReg} onChange={RegPasswordChange}  /> <br />
-              <button onClick={registerUser} > Register</button>
-           </div>
-           <div className="login">
+      
+           <div className="Login">
               <h1>Login</h1>
-              <input type="text" placeholder="Username…" /> <br/>
-              <input type="password" placeholder="Password…" />
-              <button >Login</button>
+              <label>Username</label>
+              <input type="text" value={usernameSign} onChange={SignUsernameChange}   /><br/>
+              <label>password</label>
+              <input type="text" value={passwordSign} onChange={SignPasswordChange}  /> <br />
+              <button onClick={signInUser} > SignIn</button>
            </div>
-        </div>
       );
    };
   export default SignIn;

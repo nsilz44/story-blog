@@ -22,16 +22,25 @@ app.post("/post", (req, res) => {
 }); 
 
 app.post("/register", (req, res)=> {
-  console.log(req.body);
   const username = req.body.username;
   const password = req.body.password;
+  const email = req.body.email;
+  const type = 'normal'
   db.execute(
-    "INSERT INTO users (username, password) VALUES (?,?)",
-    [username, password],
+    "INSERT INTO users (username, email, password, type) VALUES (?,?,?,?)",
+    [username, password,email,type],
     (err, result)=> {
-    console.log(err);
-    }
+    if (err) {
+        // Throw your error output here.
+        console.log("An error occurred.");
+        res.sendStatus(500)
+    } else {
+        // Throw a success message here.
+        console.log("1 record successfully inserted into db");
+        res.send('registered');
+    }}
   );
+  
 });
   
 const PORT = process.env.PORT || 8080; 
