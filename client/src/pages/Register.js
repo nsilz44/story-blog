@@ -6,7 +6,8 @@ const Register = () => {
     const [confirmPasswordReg, setConfirmPasswordReg] = useState("");
     const [emailReg, setEmailReg] = useState("");
  
-    const registerUser = () =>{ 
+    const registerUser = (e) =>{
+      e.preventDefault();
        try {
         if(confirmPasswordReg !== passwordReg){
             const matchingPassword = document.getElementById("matchingPasswords");
@@ -14,8 +15,6 @@ const Register = () => {
             console.log('now');
         }
         else {
-
-        
         const data = {
            username : usernameReg,
            password : passwordReg,
@@ -36,6 +35,7 @@ const Register = () => {
           console.log(`POST failed with ${res.status}.`)
           console.log(res);};
         }}catch(err) {
+        console.log(passwordReg,confirmPasswordReg);
         console.error(err);
       };
     
@@ -61,18 +61,21 @@ const Register = () => {
          <div className="App">
             <div className="registration">
                 <h1>Registration</h1>
+                <form onSubmit={registerUser}>
                 <label>Username</label>
-                <input type="text" value={usernameReg} onChange={RegUsernameChange}   /><br/>
+                <input type="text" value={usernameReg} onChange={RegUsernameChange} required minLength="4" maxLength="32" pattern="/[a-zA-Z0-9]/" /><br/>
                 <label>Password</label>
-                <input type="text" value={passwordReg} onChange={RegPasswordChange}  /> <br />
+                <input type="password"  value={passwordReg} onChange={RegPasswordChange} required  minLength="8" maxLength="500" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/> <br />
                 <label>Retype password</label>
-                <input type="text" value={confirmPasswordReg} onChange={RegConfirmPasswordChange}  /> <br />
-                <div id="matchingPasswords" display = "none">
+                <input type="password"  value={confirmPasswordReg} onChange={RegConfirmPasswordChange} required minLength="8" maxLength="500" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/> <br />
+                <div id="matchingPasswords" display = "">
                     <label>Passwords do not match</label>
                 </div>
                 <label>Email</label>
-                <input type="text" value={emailReg} onChange={RegEmailChange}  /> <br />
-                <button onClick={registerUser} > Register</button>
+                <input type="email"  value={emailReg} onChange={RegEmailChange}  required/> <br />
+                <button id="submit" type="submit" > Register</button>
+                </form>
+                
             </div>
          </div>
        );
