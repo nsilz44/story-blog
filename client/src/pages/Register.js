@@ -21,7 +21,8 @@ const Register = () => {
            email: emailReg
         }
         console.log(data)
-        const res = fetch('http://localhost:8080/register', {
+        async function exampleFetch() {
+        const res = await fetch('http://localhost:8080/register', {
           method: 'POST',
           headers: {
             "content-type": "application/json"
@@ -34,7 +35,9 @@ const Register = () => {
         if (!res.ok) {
           console.log(`POST failed with ${res.status}.`)
           console.log(res);};
-        }}catch(err) {
+        }
+        exampleFetch();
+      }}catch(err) {
         console.log(passwordReg,confirmPasswordReg);
         console.error(err);
       };
@@ -63,7 +66,7 @@ const Register = () => {
                 <h1>Registration</h1>
                 <form onSubmit={registerUser}>
                 <label>Username</label>
-                <input type="text" value={usernameReg} onChange={RegUsernameChange} required minLength="4" maxLength="32" pattern="/[a-zA-Z0-9]/" /><br/>
+                <input type="text" value={usernameReg} onChange={RegUsernameChange} required minLength="4" maxLength="32"  /><br/>
                 <label>Password</label>
                 <input type="password"  value={passwordReg} onChange={RegPasswordChange} required  minLength="8" maxLength="500" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/> <br />
                 <label>Retype password</label>
