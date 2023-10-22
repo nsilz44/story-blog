@@ -38,7 +38,6 @@ const Register = () => {
         }
         exampleFetch();
       }}catch(err) {
-        console.log(passwordReg,confirmPasswordReg);
         console.error(err);
       };
     
@@ -68,9 +67,9 @@ const Register = () => {
                 <label>Username</label>
                 <input type="text" value={usernameReg} onChange={RegUsernameChange} required minLength="4" maxLength="32"  /><br/>
                 <label>Password</label>
-                <input type="password"  value={passwordReg} onChange={RegPasswordChange} required  minLength="8" maxLength="500" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/> <br />
+                <input type="password"  value={passwordReg} onChange={RegPasswordChange} required  minLength="8" maxLength="500" pattern="^([A-Za-z0-9]{4,32})$"/> <br />
                 <label>Retype password</label>
-                <input type="password"  value={confirmPasswordReg} onChange={RegConfirmPasswordChange} required minLength="8" maxLength="500" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/> <br />
+                <input type="password"  value={confirmPasswordReg} onChange={RegConfirmPasswordChange} required minLength="8" maxLength="500" pattern="^([A-Za-z0-9]{4,32})$"/> <br />
                 <div id="matchingPasswords" display = "">
                     <label>Passwords do not match</label>
                 </div>
