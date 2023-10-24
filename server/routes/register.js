@@ -55,14 +55,14 @@ register.post("/", (req, res)=> {
       res.status(401);
       res.send('Email already exists');
     }
-    else if (newEmail){
+    else if (newUser){
       res.status(401);
       res.send('User already exists');
     }
     else{
       db.execute(
-        "INSERT INTO users (username, email, password, type) VALUES (?,?,?,?)",
-        [username, password,email,type],
+        "INSERT INTO users (username, email, password, type,validated) VALUES (?,?,?,?)",
+        [username,email, password,type,'No'],
         (err, result)=> {
         if (err) {
             // Throw your error output here.
