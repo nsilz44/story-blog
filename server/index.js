@@ -23,7 +23,10 @@ app.post("/post", (req, res) => {
   res.redirect("/"); 
 }); 
 
-
+app.post("/email",(req, res) => { 
+  console.log("Connected to React");
+  res.redirect("/"); 
+}); 
   
 const PORT = process.env.PORT || 8080; 
   

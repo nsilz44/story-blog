@@ -1,6 +1,9 @@
 # Database connection
 db.js
 
+# Email connection
+email.js
+
 # Logs
 
 logs

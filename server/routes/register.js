@@ -1,11 +1,11 @@
 import express from 'express'
 import db from "../database/db.js";
-
+import sendEmail from "../emails/email.js";
 const register = express.Router();
 
 
 const emailExists = async emailAddress => new Promise((resolve, reject) => {
-  con.query(`
+  db.query(`
      SELECT EXISTS(
        SELECT id FROM users WHERE email = ?
      );
@@ -19,7 +19,7 @@ const emailExists = async emailAddress => new Promise((resolve, reject) => {
 );
 
 const userExists = async username => new Promise((resolve, reject) => {
-  con.query(`
+  db.query(`
      SELECT EXISTS(
        SELECT id FROM users WHERE username = ?
      );
@@ -51,27 +51,29 @@ register.post("/", (req, res)=> {
       res.status(401);
       res.send('Email in wrong format');
     }
-    else if (newEmail){
+    else if (newEmail.length){
       res.status(401);
       res.send('Email already exists');
     }
-    else if (newUser){
+    else if (newUser.length){
       res.status(401);
       res.send('User already exists');
     }
     else{
       db.execute(
-        "INSERT INTO users (username, email, password, type,validated) VALUES (?,?,?,?)",
+        "INSERT INTO users (username, email, password, type,validated) VALUES (?,?,?,?,?)",
         [username,email, password,type,'No'],
         (err, result)=> {
         if (err) {
             // Throw your error output here.
             console.log("An error occurred.");
+            console.log(err)
             res.sendStatus(500)
         } else {
             // Throw a success message here.
             console.log("1 record successfully inserted into db");
             res.send('registered');
+            sendEmail(email);
         }}
       );
     }
