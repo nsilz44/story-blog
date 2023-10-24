@@ -2,11 +2,43 @@ import express from 'express'
 import db from "../database/db.js";
 
 const register = express.Router();
+
+
+const emailExists = async emailAddress => new Promise((resolve, reject) => {
+  con.query(`
+     SELECT EXISTS(
+       SELECT id FROM users WHERE email = ?
+     );
+    `,
+    [emailAddress],
+    (err, result) => {
+      if (err) { reject(err); }
+      resolve(result);
+    }
+  )}
+);
+
+const userExists = async username => new Promise((resolve, reject) => {
+  con.query(`
+     SELECT EXISTS(
+       SELECT id FROM users WHERE username = ?
+     );
+    `,
+    [username],
+    (err, result) => {
+      if (err) { reject(err); }
+      resolve(result);
+    }
+  )}
+);
+
 register.post("/", (req, res)=> {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
     const type = 'normal';
+    const newEmail = emailExists(email);
+    const newUser = userExists(username);
     if (!(username.match("^([A-Za-z0-9]{4,32})$"))){
       res.status(401);
       res.send('Username in wrong format');
@@ -18,6 +50,14 @@ register.post("/", (req, res)=> {
     else if (!(email.match("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"))){
       res.status(401);
       res.send('Email in wrong format');
+    }
+    else if (newEmail){
+      res.status(401);
+      res.send('Email already exists');
+    }
+    else if (newEmail){
+      res.status(401);
+      res.send('User already exists');
     }
     else{
       db.execute(

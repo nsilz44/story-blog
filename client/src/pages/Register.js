@@ -70,9 +70,6 @@ const Register = () => {
                 <input type="password"  value={passwordReg} onChange={RegPasswordChange} required  minLength="8" maxLength="500" pattern="^([A-Za-z0-9]{4,32})$"/> <br />
                 <label>Retype password</label>
                 <input type="password"  value={confirmPasswordReg} onChange={RegConfirmPasswordChange} required minLength="8" maxLength="500" pattern="^([A-Za-z0-9]{4,32})$"/> <br />
-                <div id="matchingPasswords" display = "">
-                    <label>Passwords do not match</label>
-                </div>
                 <label>Email</label>
                 <input type="email"  value={emailReg} onChange={RegEmailChange}  required/> <br />
                 <button id="submit" type="submit" > Register</button>
