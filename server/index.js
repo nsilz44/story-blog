@@ -1,4 +1,5 @@
 import register from "./routes/register.js";
+import verification from ".routes/verification.js";
 import require from "./require.js";
 
 const express = require("express"); 
@@ -17,6 +18,8 @@ app.use(
  );
 
 app.use("/register",register);
+
+app.use("/verification",verification);
 
 app.post("/post", (req, res) => { 
   console.log("Connected to React"); 

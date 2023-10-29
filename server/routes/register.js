@@ -1,6 +1,5 @@
 import express from 'express'
 import db from "../database/db.js";
-import sendEmail from "../emails/email.js";
 const register = express.Router();
 
 
@@ -73,7 +72,7 @@ register.post("/", (req, res)=> {
             // Throw a success message here.
             console.log("1 record successfully inserted into db");
             res.send('registered');
-            sendEmail(email);
+            
         }}
       );
     }
