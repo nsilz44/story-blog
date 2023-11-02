@@ -8,7 +8,7 @@ import NoPage from "./pages/NoPage";
 import SuperUser from "./pages/SuperUser";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
-
+import Verification from "./pages/Verification";
   
 function App() { 
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path="superUser" element={<SuperUser />} />
           <Route path="register" element={<Register  />} />
           <Route path="signIn" element={<SignIn   />} />
+          <Route path="verification" element={<Verification  />}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

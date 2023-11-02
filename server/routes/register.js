@@ -72,10 +72,9 @@ register.post("/", (req, res)=> {
             // Throw a success message here.
             console.log("1 record successfully inserted into db");
             res.send('registered');
-            
         }}
       );
     }
   });
 
-export default register
+export default register;

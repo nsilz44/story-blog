@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 import { query } from "express";
 import db from "../database/db.js";
+import { idExists } from "../dbqueries/idExists.js" 
 const verification = express.Router();
 import sendEmail from "../emails/email.js";
 
@@ -48,12 +49,15 @@ const sendVerificationEmail = (username,email) => {
 
 
 verification.get("/:id" , (req,res) => { 
+  var id = req.params.id;
   // check if userExists
-  
+  var userExists = idExists(id)
   // check if user verified if no
-  id = req.params.id;
   // check if token expiry 1 mins old
   // send verification token to email
   // update database
   // send success to client-side
+  res.send('lol')
 })
+
+export default verification;

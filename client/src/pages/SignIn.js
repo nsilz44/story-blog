@@ -42,11 +42,13 @@ const SignIn = () => {
       
            <div className="Login">
               <h1>Login</h1>
-              <label>Username</label>
-              <input type="text" value={usernameSign} onChange={SignUsernameChange}   /><br/>
-              <label>password</label>
-              <input type="text" value={passwordSign} onChange={SignPasswordChange}  /> <br />
-              <button onClick={signInUser} > SignIn</button>
+              <form onSubmit={signInUser}>
+                <label>Username</label>
+                <input type="text" value={usernameSign} onChange={SignUsernameChange}   /><br/>
+                <label>password</label>
+                <input type="password" value={passwordSign} onChange={SignPasswordChange}  /> <br />
+                <button id="submit" type="submit" > SignIn</button>
+              </form>
            </div>
       );
    };
