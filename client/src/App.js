@@ -1,5 +1,5 @@
 import "./App.css"; 
-import React ,{ useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
@@ -8,20 +8,19 @@ import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import SuperUser from "./pages/SuperUser";
 import SignIn from "./pages/SignIn";
+import useToken from "./components/useToken";
 import Register from "./pages/Register";
 import Verification from "./pages/Verification";
+
   
 function App() {
-  const [token, setToken] = useState(''); 
 
-  if(!token) {
-    return <SignIn setToken={setToken} />
-  }
+  const { token, setToken } = useToken()
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout token={token} />}>
           <Route index element={<Home />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="contact" element={<Contact />} />

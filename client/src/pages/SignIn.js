@@ -16,7 +16,6 @@ async function signInUser(data){
 export default function SignIn({ setToken }) {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState ("");
-
    const completeSignIn = async e => {
     e.preventDefault();
     const token = await signInUser({
