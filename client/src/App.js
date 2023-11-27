@@ -1,4 +1,5 @@
 import "./App.css"; 
+import React ,{ useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
@@ -10,7 +11,13 @@ import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import Verification from "./pages/Verification";
   
-function App() { 
+function App() {
+  const [token, setToken] = useState(''); 
+
+  if(!token) {
+    return <SignIn setToken={setToken} />
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -20,7 +27,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="superUser" element={<SuperUser />} />
           <Route path="register" element={<Register  />} />
-          <Route path="signIn" element={<SignIn   />} />
+          <Route path="signIn" element={<SignIn  setToken={setToken} />} />
           <Route path="verification" element={<Verification  />}/>
           <Route path="*" element={<NoPage />} />
         </Route>

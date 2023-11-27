@@ -1,55 +1,55 @@
 import React ,{ useState } from "react";
+import PropTypes from 'prop-types';
 
-const SignIn = () => {
-   const [usernameSign, setUsernameSign] = useState("");
-   const [passwordSign, setPasswordSign] = useState ("");
+async function signInUser(data){ 
+   console.log(data)
+   return fetch('http://localhost:8080/signin', {
+     method: 'POST',
+     headers: {
+       "content-type": "application/json"
+     },
+     body: JSON.stringify(data),
+   }).then(res => res.json())
+  }
+    
 
-   const signInUser = () =>{ 
-      try {
-       const data = {
-          username : usernameSign,
-          password : passwordSign
-       }
-       console.log(data)
-       const res = fetch('http://localhost:8080/signin', {
-         method: 'POST',
-         headers: {
-           "content-type": "application/json"
-         },
-         body: JSON.stringify(data),
-       });
-       if  (res.ok) {
-         console.log(res)
-       }
-       if (!res.ok) {
-         console.log(`POST failed with ${res.status}.`)
-         console.log(res);};
-     } catch(err) {
-       console.error(err);
-     };
-   };
+export default function SignIn({ setToken }) {
+   const [username, setUsername] = useState("");
+   const [password, setPassword] = useState ("");
 
+   const completeSignIn = async e => {
+    e.preventDefault();
+    const token = await signInUser({
+      username: username,
+      password: password
+    });
+    setToken(token);
+  }
+   
+   
    function SignUsernameChange(e) {
-      setUsernameSign(e.target.value);
+      setUsername(e.target.value);
     };
 
     function SignPasswordChange(e) {
-      setPasswordSign(e.target.value);
+      setPassword(e.target.value);
     };
-
 
     return (
       
            <div className="Login">
               <h1>Login</h1>
-              <form onSubmit={signInUser}>
+              <form onSubmit={completeSignIn}>
                 <label>Username</label>
-                <input type="text" value={usernameSign} onChange={SignUsernameChange}   /><br/>
+                <input type="text" value={username} onChange={SignUsernameChange}   /><br/>
                 <label>password</label>
-                <input type="password" value={passwordSign} onChange={SignPasswordChange}  /> <br />
+                <input type="password" value={password} onChange={SignPasswordChange}  /> <br />
                 <button id="submit" type="submit" > SignIn</button>
               </form>
            </div>
       );
    };
-  export default SignIn;
+
+SignIn.propTypes = {
+    setToken: PropTypes.func.isRequired
+  };
