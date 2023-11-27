@@ -1,9 +1,8 @@
 import express from 'express'
 import db from "../database/db.js";
-const signin = express.Router();
+const newstory = express.Router();
 
-
-signin.post('/', (req, res)=> {
+newstory.post('/', (req, res)=> {
     // const username = req.body.username;
     // const password = req.body.password;
     // db.query(
@@ -15,9 +14,7 @@ signin.post('/', (req, res)=> {
     //     if (err) { reject(err); }
     //     resolve(result);
     // }
-    res.send({
-        token: 'test123'
-      });
+    res.send(req.body);
 })
 
-export default signin;
+export default newstory;

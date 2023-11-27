@@ -1,5 +1,6 @@
 import register from "./routes/register.js";
 import signin from "./routes/signin.js";
+import newstory from "./routes/newstory.js";
 
 import require from "./require.js";
 
@@ -21,6 +22,8 @@ app.use(
 app.use("/register",register);
 
 app.use("/signin",signin);
+
+app.use("/newstory", newstory);
 
 app.post("/post", (req, res) => { 
   console.log("Connected to React"); 
