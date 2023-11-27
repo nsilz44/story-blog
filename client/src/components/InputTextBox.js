@@ -10,7 +10,7 @@ export default function InputTextBox(props) {
         setCountLetters(e.target.value.length)
       };
     return(     
-        <div>
+        <div className={props.className}>
             <input type="text" value={input} onChange={inputChange}   />
             <p>{countletters}/{props.maxLength} Characters</p>
         </div>
