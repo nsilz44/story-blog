@@ -7,7 +7,8 @@ export default function InputTextBox(props) {
 
     function inputChange(e) {
         setInput(e.target.value);
-        setCountLetters(e.target.value.length)
+        setCountLetters(e.target.value.length);
+        props.onChange(input);
       };
     return(     
         <div className={props.className}>
