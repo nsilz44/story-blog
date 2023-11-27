@@ -11,6 +11,7 @@ import SignIn from "./pages/SignIn";
 import useToken from "./components/useToken";
 import Register from "./pages/Register";
 import Verification from "./pages/Verification";
+import CreateBlog from "./pages/CreateBlog/CreateBlog";
 
   
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="createBlog" element={<CreateBlog />} />
           <Route path="superUser" element={<SuperUser />} />
           <Route path="register" element={<Register  />} />
           <Route path="signIn" element={<SignIn  setToken={setToken} />} />
