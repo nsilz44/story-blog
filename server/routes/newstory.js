@@ -1,20 +1,19 @@
 import express from 'express'
 import db from "../database/db.js";
+import userExists from '../dbqueries/userExists.js';
+
 const newstory = express.Router();
 
-newstory.post('/', (req, res)=> {
-    // const username = req.body.username;
-    // const password = req.body.password;
-    // db.query(
-    //     `SELECT ( 
-    //        SELECT * FROM users WHERE username = ? AND password = ?;
-    // `),
-    // [username,password],
-    // (err, result) => {
-    //     if (err) { reject(err); }
-    //     resolve(result);
-    // }
-    res.send(req.body);
+newstory.post('/', async (req, res)=> {
+    const username = req.body.username
+    const exists = await userExists(username) 
+    if(!exists){
+        res.send('Does not exist',404);
+    }
+    else {
+        res.status(200)
+        res.send(req.body);
+    }
 })
 
 export default newstory;

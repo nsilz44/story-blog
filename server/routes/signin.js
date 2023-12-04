@@ -4,8 +4,8 @@ const signin = express.Router();
 
 
 signin.post('/', (req, res)=> {
-    // const username = req.body.username;
-    // const password = req.body.password;
+    const username = req.body.username;
+    const password = req.body.password;
     // db.query(
     //     `SELECT ( 
     //        SELECT * FROM users WHERE username = ? AND password = ?;

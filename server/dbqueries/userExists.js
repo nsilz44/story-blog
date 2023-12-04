@@ -1,7 +1,7 @@
-import db from "../database/db.js";
+import  db  from "../database/db.js";
 
 
-async function userExists(username){
+export default async function userExists(username){
     let response = db.query(`
      SELECT EXISTS(
        SELECT id FROM users WHERE username = ?
