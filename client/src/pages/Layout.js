@@ -41,7 +41,7 @@ export default function Layout({ token }) {
               <Link to="/blogs">Blogs</Link>
             </li>
             <li>
-              <Link to="/createBlog">Contact</Link>
+              <Link to="/createBlog">create short story</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>

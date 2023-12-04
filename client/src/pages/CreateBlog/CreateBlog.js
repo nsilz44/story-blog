@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import InputTextBox from '../../components/InputTextBox'
+import  './CreateBlog.css';
 
 
 async function sendStory(data){ 
@@ -38,15 +39,15 @@ export default function CreateBlog() {
             });
             console.log(response);
     }
-    const titleLength = '20'
+    const titleLength = '255'
     const textLength = '50000'
     return(
         <div>
             <form onSubmit={submitStory}>
                 <label> Title: </label>
-                <InputTextBox classname='title' maxLength={titleLength} onChange={handleTitleChanage}/>
+                <InputTextBox id='title' maxLength={titleLength} onChange={handleTitleChanage}/>
                 <label> Story:</label>
-                <InputTextBox classname='text' maxLength={textLength} onChange={handleBodyChange}/>
+                <InputTextBox id='texts' maxLength={textLength} onChange={handleBodyChange}/>
                 <label> Username: </label>
                 <p id='username' > {username} </p>
                 <button>Submit short story</button>

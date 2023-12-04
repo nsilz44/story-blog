@@ -11,8 +11,8 @@ export default function InputTextBox(props) {
         props.onChange(input);
       };
     return(     
-        <div className={props.className}>
-            <input type="text" value={input} onChange={inputChange}   />
+        <div >
+            <input id={props.id} type="text" value={input} onChange={inputChange}   />
             <p>{countletters}/{props.maxLength} Characters</p>
         </div>
     )
